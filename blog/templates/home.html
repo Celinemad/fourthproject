@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gaeun's Blog</title>
+  <!-- 부트스트랩 -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- 합쳐지고 최소화된 최신 CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+  <!-- 부가적인 테마 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+  <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <style>
+    div{
+      margin-left: 100px;
+      margin-right: auto;
+    }
+  
+  </style>
+
+</head>
+
+<body>
+  {% csrf_token %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">GAEUN WORLD</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="{% url 'new' %}">글쓰기</a>
+      </div>
+    </div>
+  </nav>
+
+  {% for blog in blogs.all %}
+  <div class="row" style="width: 3000px;">
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <div class="caption">
+          <div class="container">
+            <a href="{% url 'detail' blog.id %}">
+              <h1>{{ blog.title }}</h1>
+            </a>
+            <p>{{ blog.pub_date }}</p>
+            <p>{{ blog.summary }}<a href="{% url 'detail' blog.id %}">...more</a></p>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+
+  <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
+  <script src="js/bootstrap.min.js"></script>
+
+
+
+</body>
+
+</html>
